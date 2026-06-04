@@ -61,11 +61,11 @@
 - [x] **Task 1.10:** Create the `Card` component base with `--surface` background, `--border` border, `--radius-lg` radius, and hover border-brighten transition.
 
 ### 1C — Composite UI Components
-- [ ] **Task 1.11:** Build the `RepoCard` component (repo name in DM Mono, owner, scan status badge, provider badges with counts, footer with service count + timestamp + "View →" ghost button).
-- [ ] **Task 1.12:** Build the `AlertCard` component (left accent border, provider badge, title, description with inline code, footer with repo name + timestamp).
-- [ ] **Task 1.13:** Build the `FeatureCard` component for the landing page (icon container, title in Syne, description in DM Sans).
-- [ ] **Task 1.14:** Build the `TerminalCodeBlock` component with the macOS-style three-dot header, DM Mono body, and syntax highlighting classes (`.kw`, `.str`, `.cmt`, `.val`, `.cmd`, `.prm`).
-- [ ] **Task 1.15:** Build the `StatusBar` component (Neon-style terminal status indicator with dot + uppercase monospace label).
+- [x] **Task 1.11:** Build the `RepoCard` component (repo name in DM Mono, owner, scan status badge, provider badges with counts, footer with service count + timestamp + "View →" ghost button).
+- [x] **Task 1.12:** Build the `AlertCard` component (left accent border, provider badge, title, description with inline code, footer with repo name + timestamp).
+- [x] **Task 1.13:** Build the `FeatureCard` component for the landing page (icon container, title in Syne, description in DM Sans).
+- [x] **Task 1.14:** Build the `TerminalCodeBlock` component with the macOS-style three-dot header, DM Mono body, and syntax highlighting classes (`.kw`, `.str`, `.cmt`, `.val`, `.cmd`, `.prm`).
+- [x] **Task 1.15:** Build the `StatusBar` component (Neon-style terminal status indicator with dot + uppercase monospace label).
 
 ### 1D — Layout Shell
 - [ ] **Task 1.16:** Build the `Sidebar` component for the dashboard layout with:
