@@ -68,19 +68,19 @@
 - [x] **Task 1.15:** Build the `StatusBar` component (Neon-style terminal status indicator with dot + uppercase monospace label).
 
 ### 1D — Layout Shell
-- [ ] **Task 1.16:** Build the `Sidebar` component for the dashboard layout with:
+- [x] **Task 1.16:** Build the `Sidebar` component for the dashboard layout with:
   - CloudLens logo mark (4-square SVG icon) + wordmark in Syne 800
   - Navigation links grouped by category (Overview, Repositories, Services, Alerts, Costs, AI Insights, Settings)
   - Active link accent highlight
   - Sticky positioning, full-height, border-right separator
-- [ ] **Task 1.17:** Build the `Header` component for the dashboard with:
+- [x] **Task 1.17:** Build the `Header` component for the dashboard with:
   - Page title (dynamic based on current route)
   - Search input (global repo/service search)
   - Notification bell icon (placeholder — functional in Phase 2)
   - GitHub avatar + username from session
-- [ ] **Task 1.18:** Create the authenticated dashboard layout (`src/app/(dashboard)/layout.tsx`) composing Sidebar + Header + main content area.
-- [ ] **Task 1.19:** Create the public layout (`src/app/(public)/layout.tsx`) with a top navigation bar (CloudLens logo, nav links, "Connect GitHub →" CTA button).
-- [ ] **Task 1.20:** Implement responsive behavior — sidebar collapses to a hamburger menu on mobile (<768px), cards stack vertically, padding adjusts.
+- [x] **Task 1.18:** Create the authenticated dashboard layout (`src/app/(dashboard)/layout.tsx`) composing Sidebar + Header + main content area.
+- [x] **Task 1.19:** Create the public layout (`src/app/(public)/layout.tsx`) with a top navigation bar (CloudLens logo, nav links, "Connect GitHub →" CTA button).
+- [x] **Task 1.20:** Implement responsive behavior — sidebar collapses to a hamburger menu on mobile (<768px), cards stack vertically, padding adjusts.
 
 ---
 
