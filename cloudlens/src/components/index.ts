@@ -12,3 +12,5 @@ export type { TerminalCodeBlockProps } from "./TerminalCodeBlock";
 
 export { StatusBar } from "./StatusBar";
 export type { StatusBarProps } from "./StatusBar";
+
+export { FadeIn } from "./FadeIn";
