@@ -28,7 +28,7 @@ export function PublicNav() {
 
   return (
     <header className="sticky top-0 z-30 bg-bg/80 backdrop-blur-sm border-b border-border">
-      <nav className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <nav className="max-w-[1280px] mx-auto px-10 h-14 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 flex-shrink-0" aria-label="CloudLens home">
           <LogoMark />
