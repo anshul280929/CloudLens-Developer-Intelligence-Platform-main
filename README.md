@@ -71,7 +71,7 @@ CloudLens is a powerful, unified dashboard that automatically detects, categoriz
 Development is split into 12 distinct phases:
 - [x] Phase 0: Project Scaffolding & Dev Environment
 - [x] Phase 1: Design System Implementation & Core UI
-- [ ] Phase 2: Landing Page
+- [x] Phase 2: Landing Page
 - [ ] Phase 3: GitHub Integration & Repository Listing
 - [ ] Phase 4: Service Detection Engine
 - [ ] Phase 5: Dashboard Core Pages
