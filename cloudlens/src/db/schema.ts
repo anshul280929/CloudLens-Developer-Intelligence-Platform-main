@@ -5,6 +5,9 @@ import {
   timestamp,
   primaryKey,
   uuid,
+  boolean,
+  real,
+  uniqueIndex,
 } from "drizzle-orm/pg-core";
 import type { AdapterAccountType } from "next-auth/adapters";
 
@@ -86,3 +89,98 @@ export const verificationTokens = pgTable(
     }),
   ],
 );
+
+// ============================================================
+// CloudLens Business Domain Tables
+// ============================================================
+
+/**
+ * Repositories table — stores metadata about tracked GitHub repositories.
+ * Synced from user's GitHub account.
+ */
+export const repositories = pgTable(
+  "repository",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    userId: uuid("userId")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    githubId: text("githubId").notNull(),
+    name: text("name").notNull(),
+    fullName: text("fullName").notNull(),
+    owner: text("owner").notNull(),
+    isPrivate: boolean("isPrivate").notNull(),
+    defaultBranch: text("defaultBranch").notNull(),
+    lastCommitAt: timestamp("lastCommitAt", { mode: "date" }),
+    htmlUrl: text("htmlUrl").notNull(),
+    description: text("description"),
+    language: text("language"),
+    scanStatus: text("scanStatus")
+      .$type<"pending" | "scanning" | "complete" | "failed">()
+      .default("pending")
+      .notNull(),
+    lastScannedAt: timestamp("lastScannedAt", { mode: "date" }),
+    createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt", { mode: "date" }).defaultNow().notNull(),
+  },
+  (table) => [
+    uniqueIndex("user_repo_github_idx").on(table.userId, table.githubId),
+  ]
+);
+
+/**
+ * Scans table — records history and status of each scanner invocation.
+ */
+export const scans = pgTable("scan", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  repositoryId: uuid("repositoryId")
+    .notNull()
+    .references(() => repositories.id, { onDelete: "cascade" }),
+  status: text("status")
+    .$type<"pending" | "scanning" | "complete" | "failed">()
+    .notNull(),
+  startedAt: timestamp("startedAt", { mode: "date" }).defaultNow().notNull(),
+  completedAt: timestamp("completedAt", { mode: "date" }),
+  filesScanned: integer("filesScanned"),
+  servicesFound: integer("servicesFound"),
+  errorMessage: text("errorMessage"),
+});
+
+/**
+ * Detected Services table — stores the specific cloud services detected
+ * in a repository by our analysis parsers.
+ */
+export const detectedServices = pgTable("detectedService", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  scanId: uuid("scanId")
+    .references(() => scans.id, { onDelete: "cascade" }),
+  repositoryId: uuid("repositoryId")
+    .notNull()
+    .references(() => repositories.id, { onDelete: "cascade" }),
+  serviceName: text("serviceName").notNull(),
+  serviceCategory: text("serviceCategory")
+    .$type<
+      | "database"
+      | "auth"
+      | "hosting"
+      | "payments"
+      | "monitoring"
+      | "email"
+      | "storage"
+      | "compute"
+      | "cdn"
+      | "ci-cd"
+      | "other"
+    >()
+    .notNull(),
+  provider: text("provider").notNull(),
+  confidenceScore: real("confidenceScore").notNull(),
+  detectionSource: text("detectionSource")
+    .$type<"dependency" | "config" | "import" | "envVar" | "cicd">()
+    .notNull(),
+  evidenceFile: text("evidenceFile"),
+  evidenceLine: integer("evidenceLine"),
+  evidenceSnippet: text("evidenceSnippet"),
+  createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
+});
+
